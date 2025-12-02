@@ -1,8 +1,12 @@
-# HTTPWebserver
+## HTTPWebserver
+
+![C++20](https://img.shields.io/badge/std-c%2B%2B20-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
+![Status](https://img.shields.io/badge/status-active-success)
 
 A minimal HTTP server implemented in modern C++20.
 
-This project demonstrates low-level networking, HTTP parsing, multithreading with a threadpool, C++20 modules, and manual server architecture without external libraries.
+This project demonstrates low-level networking, HTTP parsing, multithreading with a thread pool, C++20 modules, and manual server architecture without external libraries.
 
 ## Table of Contents
 - **[Overview](#overview)**
@@ -23,6 +27,10 @@ This project demonstrates low-level networking, HTTP parsing, multithreading wit
 - **[Limitations](#limitations)**
 - **[Future Improvements](#future-improvements)**
 - **[Summary](#summary)**
+- **[Getting Started](#-getting-started)**
+- **[Running the Server](#-running-the-server)**
+- **[API & Endpoints](#-api--endpoints)**
+- **[Development Notes](#-development-notes)**
 
 ## Overview
 
@@ -32,7 +40,7 @@ It serves static HTML pages, static assets, and basic routes.
 
 **Key technologies:**
 
-- **C++20 modules (.ixx)**
+- **C++20 modules (`.ixx`)**
 - **POSIX TCP sockets**
 - **Thread-pool concurrency**
 - **Manual HTTP parsing and response generation**
@@ -68,7 +76,7 @@ This demonstrates real-world modular C++ application layout.
 
 ### Concurrency
 
-- **Functional thread-pool with worker threads**
+- **Functional thread pool with worker threads**
 - **Task queue protected by `std::mutex` + `std::condition_variable`**
 - **Futures for task results** via `std::future` / `std::packaged_task`
 
@@ -80,15 +88,16 @@ This demonstrates real-world modular C++ application layout.
 
 ### Architecture
 
-- **`src/`**
+- **Sources**
   - `threadpool.ixx` – Worker threads, task queue
   - `coroutines.ixx` – Minimal coroutine type (`suspend_never`)
   - `tcpserver.ixx` – Socket logic and request handling
-- **`include/`** – Public headers (if any)
-- **`templates/`** – HTML pages
-- **`public/`** – CSS and static assets
-- **`main.cpp`** – Program entry
-- **`CMakeLists.txt`** – Build configuration
+  - `main.cpp` – Program entry
+- **Assets**
+  - `templates/` – HTML pages
+  - `public/` – CSS and static assets
+- **Build**
+  - `CMakeLists.cpp` – Build configuration
 
 ## Detailed Technical Breakdown
 
@@ -125,11 +134,12 @@ Parsing extracts:
 
 The path is mapped to files:
 
-- **Path** `→` **File**
-- `/` → `templates/index.html`
+- **Path** → **File**
+- `/` → `templates/home.html` (or `templates/index.html` depending on configuration)
 - `/about` → `templates/about.html`
 - `/contact` → `templates/contact.html`
-- `/public/*` → Directly served static files
+- `/api` → `templates/api.html`
+- `/public/*` → Directly served static files under `public/`
 
 If the file doesn’t exist:
 
@@ -262,3 +272,65 @@ This project demonstrates:
 - **Foundations for async and coroutine-based servers**
 
 This is the type of project that shows employers strong systems-level engineering ability.
+
+## 🔧 Getting Started
+
+### Prerequisites
+
+- **C++20-compatible compiler** (MSVC, GCC, Clang).
+- **CMake 3.20+**.
+
+### Build Instructions
+
+1. Clone the repository:
+
+    ```bash
+    git clone https://github.com/NicholasAli1/HTTPWebserver
+    cd HTTPWebserver
+    ```
+
+2. Create a build directory and run CMake:
+
+    ```bash
+    mkdir build
+    cd build
+    cmake ..
+    ```
+
+3. Compile the project:
+
+    ```bash
+    cmake --build .
+    ```
+
+## 🏃‍♂️ Running the Server
+
+After a successful build, execute the generated binary from the `build` directory:
+
+```bash
+./HTTPWebserver
+```
+
+Then open your web browser and navigate to:
+
+```text
+http://localhost:8080
+```
+
+*(Note: Port depends on configuration in `main.cpp`; default is typically 8080 or 8000.)*
+
+## 🔌 API & Endpoints
+
+The server includes a basic router that handles the following endpoints:
+
+- **`GET /`**: Serves the Home page (`templates/home.html`).
+- **`GET /about`**: Serves the About page (`templates/about.html`).
+- **`GET /contact`**: Serves the Contact page (`templates/contact.html`).
+- **`GET /api`**: Displays API information (`templates/api.html`).
+- **`GET /style.css`**: Serves the stylesheet from the `public/` directory.
+
+## 📝 Development Notes
+
+- **Modules**: This project uses `.ixx` module files. Ensure your IDE and compiler are configured to handle C++20 modules correctly.
+- **HTML Templates**: Modify files in the `templates/` folder to update the content of the web pages.
+- **Styles**: Update `public/style.css` to change the look and feel of the served pages.
