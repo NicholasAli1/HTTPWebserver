@@ -1,33 +1,58 @@
-# HTTPWebserver
 
-A high-performance, lightweight HTTP web server implemented in C++20.
+## 🔧 Getting Started
 
-![C++20](https://img.shields.io/badge/std-c%2B%2B20-blue)
-![License](https://img.shields.io/badge/license-MIT-green)
-![Status](https://img.shields.io/badge/status-active-success)
+### Prerequisites
 
-## 📋 Table of Contents
-- [Overview](#overview)
-- [Features](#features)
-- [Architecture](#architecture)
+*   A C++ compiler containing support for C++20 (e.g., MSVC, GCC, Clang).
+*   **CMake** (Version 3.20 or higher recommended).
 
+### Build Instructions
 
-## 📖 Overview
+1.  Clone the repository:
+    ```bash
+    git clone https://github.com/NicholasAli1/HTTPWebserver
+    cd HTTPWebserver
+    ```
 
-HTTPWebserver is a custom implementation of the HTTP protocol designed to handle concurrent client connections efficiently. It serves static files and handles basic HTTP requests, showcasing modern C++ features
+2.  Create a build directory and run CMake:
+    ```bash
+    mkdir build
+    cd build
+    cmake ..
+    ```
 
-## ✨ Features
+3.  Compile the project:
+    ```bash
+    cmake --build .
+    ```
 
-*   **Modern C++:** Built entirely using C++20 standards.
-*   **Concurrent Handling:** Supports multiple simultaneous client connections.
-*   **HTTP/1.1 Support:** Handles standard GET, POST, and HEAD requests.
-*   **Static File Serving:** Efficiently serves HTML, CSS, JS, and image files.
-*   **Configurable:** Port and root directory can be configured.
-*   **Logging:** Comprehensive request and error logging.
+## 🏃‍♂️ Running the Server
 
-## 🧩 Architecture
+After a successful build, execute the generated binary from the build directory.
 
-*   **Server Class:** Manages the socket creation, binding, and listening loop.
-*   **Request Parser:** Parses raw TCP streams into HTTP request objects.
-*   **Response Builder:** Constructs valid HTTP responses based on resource availability.
-*   **Connection Manager:** Handles threading/async operations for client connections.
+1.  Run the executable:
+    ```bash
+    ./HTTPWebserver
+    ```
+
+2.  Open your web browser and navigate to:
+    ```
+    http://localhost:8080
+    ```
+    *(Note: Port depends on configuration in `main.cpp`, default is typically 8080 or 8000)*
+
+## 🔌 API & Endpoints
+
+The server includes a basic router that handles the following endpoints:
+
+*   `GET /`: Serves the Home page (`templates/home.html`).
+*   `GET /about`: Serves the About page (`templates/about.html`).
+*   `GET /contact`: Serves the Contact page (`templates/contact.html`).
+*   `GET /api`: Displays API information (`templates/api.html`).
+*   `GET /style.css`: Serves the stylesheet from the public directory.
+
+## 📝 Development Notes
+
+*   **Modules**: This project uses `.ixx` files. Ensure your IDE and compiler are configured to handle C++ modules correctly.
+*   **HTML Templates**: Modify files in the `templates/` folder to update the content of the web pages.
+*   **Styles**: Update `public/style.css` to change the look and feel of the served pages.
