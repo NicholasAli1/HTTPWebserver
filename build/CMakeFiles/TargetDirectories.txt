@@ -1,0 +1,3 @@
+/Users/nick/Code/C++/HTTPWebserver/build/CMakeFiles/HTTPWebserver.dir
+/Users/nick/Code/C++/HTTPWebserver/build/CMakeFiles/edit_cache.dir
+/Users/nick/Code/C++/HTTPWebserver/build/CMakeFiles/rebuild_cache.dir

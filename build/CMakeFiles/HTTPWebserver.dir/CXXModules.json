@@ -1,0 +1,46 @@
+{
+	"modules" : 
+	{
+		"http.coroutines" : 
+		{
+			"bmi" : "/Users/nick/Code/C++/HTTPWebserver/build/CMakeFiles/HTTPWebserver.dir/http.coroutines.pcm",
+			"is-private" : false
+		},
+		"http.tcpserver" : 
+		{
+			"bmi" : "/Users/nick/Code/C++/HTTPWebserver/build/CMakeFiles/HTTPWebserver.dir/http.tcpserver.pcm",
+			"is-private" : false
+		},
+		"http.threadpool" : 
+		{
+			"bmi" : "/Users/nick/Code/C++/HTTPWebserver/build/CMakeFiles/HTTPWebserver.dir/http.threadpool.pcm",
+			"is-private" : false
+		}
+	},
+	"references" : 
+	{
+		"http.coroutines" : 
+		{
+			"lookup-method" : "by-name",
+			"path" : "CMakeFiles/HTTPWebserver.dir/http.coroutines.pcm"
+		},
+		"http.tcpserver" : 
+		{
+			"lookup-method" : "by-name",
+			"path" : "CMakeFiles/HTTPWebserver.dir/http.tcpserver.pcm"
+		},
+		"http.threadpool" : 
+		{
+			"lookup-method" : "by-name",
+			"path" : "CMakeFiles/HTTPWebserver.dir/http.threadpool.pcm"
+		}
+	},
+	"usages" : 
+	{
+		"http.tcpserver" : 
+		[
+			"http.coroutines",
+			"http.threadpool"
+		]
+	}
+}

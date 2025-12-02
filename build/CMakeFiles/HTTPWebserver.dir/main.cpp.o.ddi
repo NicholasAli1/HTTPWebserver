@@ -1,0 +1,14 @@
+{
+  "revision": 0,
+  "rules": [
+    {
+      "primary-output": "CMakeFiles/HTTPWebserver.dir/main.cpp.o",
+      "requires": [
+        {
+          "logical-name": "http.tcpserver"
+        }
+      ]
+    }
+  ],
+  "version": 1
+}

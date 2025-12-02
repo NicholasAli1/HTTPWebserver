@@ -1,0 +1,16 @@
+{
+  "revision": 0,
+  "rules": [
+    {
+      "primary-output": "CMakeFiles/HTTPWebserver.dir/coroutines.ixx.o",
+      "provides": [
+        {
+          "is-interface": true,
+          "logical-name": "http.coroutines",
+          "source-path": "/Users/nick/Code/C++/HTTPWebserver/coroutines.ixx"
+        }
+      ]
+    }
+  ],
+  "version": 1
+}
