@@ -51,7 +51,7 @@ private:
   static std::string urlDecode(const std::string &str);
 };
 
-// ------------------- Constructor -------------------
+// Constructor
 TCPServer::TCPServer(std::string ip_address, int port)
     : m_ip_address(ip_address), m_port(port),
       m_threadPool(std::thread::hardware_concurrency()) {
@@ -79,10 +79,10 @@ TCPServer::TCPServer(std::string ip_address, int port)
   }
 }
 
-// ------------------- Destructor -------------------
+// Destructor
 TCPServer::~TCPServer() { closeServer(); }
 
-// ------------------- Start server -------------------
+// Start server
 void TCPServer::startServer() {
   std::cout << "Server running on " << m_ip_address << ":" << m_port << "\n";
 
@@ -103,10 +103,10 @@ void TCPServer::startServer() {
   }
 }
 
-// ------------------- Close server -------------------
+//  Close server
 void TCPServer::closeServer() { close(m_socket); }
 
-// ------------------- Build HTTP response -------------------
+// Build HTTP response
 std::string TCPServer::buildResponse(const std::string &path) {
   std::string response;
   std::string body;
@@ -148,7 +148,7 @@ std::string TCPServer::buildResponse(const std::string &path) {
   return response;
 }
 
-// ------------------- Get content type -------------------
+// Get content type
 std::string TCPServer::getContentType(const std::string &path) {
   if (path.find(".html") != std::string::npos)
     return "text/html";
@@ -163,7 +163,7 @@ std::string TCPServer::getContentType(const std::string &path) {
   return "text/plain";
 }
 
-// ------------------- URL decode -------------------
+// URL decode
 std::string TCPServer::urlDecode(const std::string &str) {
   std::string decoded;
   char hex[3] = {0};
@@ -182,16 +182,16 @@ std::string TCPServer::urlDecode(const std::string &str) {
   return decoded;
 }
 
-// ------------------- Register route -------------------
+// Register route
 void TCPServer::registerRoute(const std::string &path,
                               const std::string &response) {
   m_routes[path] = response;
 }
 
-// ------------------- Set static root -------------------
+// Set static root
 void TCPServer::setStaticRoot(const std::string &root) { m_staticRoot = root; }
 
-// ------------------- Load template -------------------
+// Load template
 std::string TCPServer::loadTemplate(const std::string &templatePath) {
   std::ifstream file(templatePath, std::ios::in | std::ios::binary);
   if (!file) {
@@ -202,7 +202,7 @@ std::string TCPServer::loadTemplate(const std::string &templatePath) {
   return ss.str();
 }
 
-// ------------------- Handle client -------------------
+// Handle client
 Task TCPServer::handleClient(int clientSocket, struct sockaddr_in clientAddr) {
   char buffer[30000] = {0};
   long bytesRead = read(clientSocket, buffer, sizeof(buffer));
